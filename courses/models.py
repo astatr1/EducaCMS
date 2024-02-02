@@ -18,13 +18,13 @@ class Subject(models.Model):
 
 class Course(models.Model):
     owner = models.ForeignKey(User, related_name='courses_created',
-                              on_delete=models.CASCADE)
+                              on_delete=models.CASCADE, verbose_name='Владелец')
     subject = models.ForeignKey(Subject, related_name='courses',
-                                on_delete=models.CASCADE)
-    title = models.CharField(max_length=200)
+                                on_delete=models.CASCADE, verbose_name='Предмет')
+    title = models.CharField(max_length=200, verbose_name='Заголовок')
     slug = models.SlugField(max_length=200, unique=True)
-    overview = models.TextField()
-    created = models.DateTimeField(auto_now_add=True)
+    overview = models.TextField(verbose_name='Описание')
+    created = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
 
     class Meta:
         ordering = ['-created']
@@ -36,9 +36,9 @@ class Course(models.Model):
 class Module(models.Model):
     course = models.ForeignKey(Course,
                                related_name='modules',
-                               on_delete=models.CASCADE)
-    title = models.CharField(max_length=200)
-    description = models.TextField(blank=True)
+                               on_delete=models.CASCADE, verbose_name='Курс')
+    title = models.CharField(max_length=200, verbose_name='Заголовок')
+    description = models.TextField(blank=True, verbose_name='Описание')
     order = OrderField(blank=True, for_field=['course'])
 
     class Meta:

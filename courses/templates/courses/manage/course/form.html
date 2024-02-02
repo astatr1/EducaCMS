@@ -4,7 +4,7 @@
     {% if object %}
         Редактирование курса "{{ object.title }}"
     {% else %}
-        Создать новый курс
+        Добавление нового курса
     {% endif %}
 {% endblock %}
 
@@ -13,11 +13,11 @@
     {% if object %}
         Редактировать курс "{{ object.title }}"
     {% else %}
-        Создать новый курс
+        Добавление нового курса
     {% endif %}
     </h1>
     <div class="module">
-        <h2>Course info</h2>
+        <h2>Информация о курсе</h2>
         <form method="post">
             {{ form.as_p }}
             {% csrf_token %}
